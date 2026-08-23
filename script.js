@@ -1485,7 +1485,10 @@ function initGalleryAndSlideshow() {
 
       const thumbs = thumbnailStrip.querySelectorAll('.thumb-item');
       thumbs.forEach((t, i) => t.classList.toggle('active', i === currentIndex));
-      thumbs[currentIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const activeThumb = thumbs[currentIndex];
+      if (activeThumb && thumbnailStrip) {
+        thumbnailStrip.scrollLeft = activeThumb.offsetLeft - (thumbnailStrip.clientWidth / 2) + (activeThumb.clientWidth / 2);
+      }
 
       resetProgressBar();
     }, 200);
@@ -1655,18 +1658,9 @@ function initEnvelope() {
 
   readerCloseBtn?.addEventListener('click', closeReaderModal);
   readerBottomCloseBtn?.addEventListener('click', closeReaderModal);
-  readerBackdrop?.addEventListener('click', closeReaderModal);
-
   scrollLetterBtn?.addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementById('letterSection')?.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => {
-      if (!envelope.classList.contains('open')) {
-        envelope.classList.add('open');
-        window.triggerConfetti(window.innerWidth / 2, window.innerHeight * 0.5, 90);
-        playCelebrationSound();
-      }
-    }, 650);
+    openReaderModal();
   });
 }
 
