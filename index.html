@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>শুভ জন্মদিন রইসা! ✨ Happy Birthday Raisa 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600;700&family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="aurora-bg">
+
+  <!-- Dynamic Multi-Layer VFX & Particle Canvases -->
+  <canvas id="auroraCanvas"></canvas>
+  <canvas id="fireworksCanvas"></canvas>
+  <canvas id="starfieldCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+  <canvas id="sparkleCanvas"></canvas>
+  <canvas id="cursorTrailCanvas"></canvas>
+
+  <!-- 3D Orbiting Background Photo Ring -->
+  <div class="bg-photo-ring-stage" id="bgPhotoRingStage">
+    <div class="bg-photo-ring" id="bgPhotoRing"></div>
+  </div>
+
+  <!-- Kinetic Background Animated Photo Wall Streams -->
+  <div class="bg-photo-streams" id="bgPhotoStreams">
+    <div class="photo-stream-col stream-up" id="streamCol1"></div>
+    <div class="photo-stream-col stream-down" id="streamCol2"></div>
+    <div class="photo-stream-col stream-up" id="streamCol3"></div>
+    <div class="photo-stream-col stream-down" id="streamCol4"></div>
+  </div>
+
+  <!-- Floating 3D Background Polaroids & Glowing Photo Bubbles -->
+  <div class="bg-floating-polaroids" id="bgPolaroids"></div>
+  <div class="bg-photo-bubbles" id="bgPhotoBubbles"></div>
+  <div class="bg-photo-crystals" id="bgPhotoCrystals"></div>
+
+  <!-- Main Background Animated Floating Lyrics -->
+  <div class="main-bg-lyrics-layer" id="mainBgLyrics">
+    <div class="main-bg-lyric-en" id="mainBgLyricEn">I can see it in your eyes...</div>
+    <div class="main-bg-lyric-bn" id="mainBgLyricBn">তোমার চোখের তারায় ফুটে উঠছে মায়াবী আলো...</div>
+  </div>
+
+  <!-- Ambient Light Rays & Speedlines -->
+  <div class="ambient-light-rays"></div>
+  <div class="speed-lines-overlay" id="speedLines"></div>
+
+  <!-- Floating 3D Icons & Balloons Layer -->
+  <div id="balloonContainer" aria-hidden="true"></div>
+  <div id="floating3DObjects" class="floating-3d-container" aria-hidden="true"></div>
+
+  <!-- FULLSCREEN GRAND CINEMATIC VIDEO REEL -->
+  <div class="cinema-fullscreen-wrapper" id="cinemaWrapper">
+    <!-- Cinema 3D Background Photo Ring -->
+    <div class="cinema-bg-photo-ring-stage">
+      <div class="bg-photo-ring" id="cinemaBgPhotoRing"></div>
+    </div>
+
+    <!-- Cinema Kinetic Background Photo Streams -->
+    <div class="cinema-bg-photo-streams" id="cinemaBgPhotoStreams">
+      <div class="photo-stream-col stream-up" id="cinemaStream1"></div>
+      <div class="photo-stream-col stream-down" id="cinemaStream2"></div>
+      <div class="photo-stream-col stream-up" id="cinemaStream3"></div>
+      <div class="photo-stream-col stream-down" id="cinemaStream4"></div>
+    </div>
+
+    <!-- Cinema Floating Photo Bubbles -->
+    <div class="bg-photo-bubbles" id="cinemaPhotoBubbles"></div>
+
+    <!-- Cinema Animated Background Kinetic Lyrics (Behind Photo Stage) -->
+    <div class="cinema-bg-lyrics-layer" id="cinemaBgLyrics">
+      <div class="cinema-bg-lyric-en" id="cinemaBgLyricEn">I can see it in your eyes...</div>
+      <div class="cinema-bg-lyric-bn" id="cinemaBgLyricBn">তোমার চোখের তারায় ফুটে উঠছে মায়াবী আলো...</div>
+    </div>
+
+    <!-- Background Animated Mesh Gradient & Ambient Photo Glow -->
+    <div class="cinema-ambient-glow" id="cinemaAmbientGlow"></div>
+    <img id="cinemaBgImg" class="cinema-bg-blur" src="images/6077836997310485183.jpg" alt="Backdrop">
+
+    <!-- Top Cinema Status & Controls Bar -->
+    <div class="cinema-topbar">
+      <div class="cinema-badge">
+        <span class="live-blink-dot"></span>
+        <span>✨ রইসার জন্মদিনের স্পেশাল ভিডিও রিল ✨</span>
+      </div>
+      <div class="cinema-top-right">
+        <button class="cinema-icon-btn" id="cinemaFsToggleBtn" title="Toggle Fullscreen">⛶ ফুলস্ক্রিন</button>
+        <button class="cinema-icon-btn cinema-close-btn" id="cinemaExitBtn" title="Exit to Website">💌 চিঠি ও কেক দেখুন ➔</button>
+      </div>
+    </div>
+
+    <!-- Central Cinematic Stage with Dual 3D Animated Layers -->
+    <div class="cinema-stage" id="cinemaStage">
+      <!-- Motion Graphics Changing Animation Canvas & Overlays -->
+      <canvas id="motionGraphicsCanvas" class="mg-canvas"></canvas>
+      <div class="mg-transition-overlay" id="mgTransitionOverlay">
+        <div class="mg-laser-blade" id="mgLaserBlade"></div>
+        <div class="mg-shutter-grid" id="mgShutterGrid"></div>
+        <div class="mg-brush-wipe" id="mgBrushWipe"></div>
+      </div>
+
+      <!-- Transition Flash & Shockwave Ring Overlay -->
+      <div class="transition-flash" id="transitionFlash"></div>
+      <div class="transition-shockwave" id="transitionShockwave"></div>
+
+      <!-- 3D Photo Display Frame A -->
+      <div class="cinema-slide active enter-vortex-zoom" id="cinemaSlideA">
+        <div class="cinema-photo-frame">
+          <div class="photo-glow-ring"></div>
+          <img src="images/6077836997310485183.jpg" alt="Raisa Memory">
+          <div class="photo-shimmer-sweep"></div>
+        </div>
+      </div>
+
+      <!-- 3D Photo Display Frame B -->
+      <div class="cinema-slide" id="cinemaSlideB">
+        <div class="cinema-photo-frame">
+          <div class="photo-glow-ring"></div>
+          <img src="images/6077836997310485184.jpg" alt="Raisa Memory">
+          <div class="photo-shimmer-sweep"></div>
+        </div>
+      </div>
+
+      <!-- Floating Magic Particles Overlay -->
+      <div class="cinema-particles" id="cinemaParticles"></div>
+
+      <!-- Dynamic Bengali Video Captions & Wishes -->
+      <div class="cinema-caption-box" id="cinemaCaptionBox">
+        <div class="cinema-caption-title" id="cinemaCaptionTitle">✨ রইসার মিষ্টি স্মৃতির অ্যালবাম 💖</div>
+        <div class="cinema-caption-sub" id="cinemaCaptionSub">তোমার প্রতিটি দিন কাটুক অফুরন্ত হাসি আর সাফল্যে... 🌸</div>
+      </div>
+    </div>
+
+    <!-- Bottom Timeline, Music & Media Controls -->
+    <div class="cinema-bottombar">
+      <div class="cinema-timeline">
+        <div class="cinema-progress" id="cinemaProgress"></div>
+      </div>
+      <div class="cinema-controls-row">
+        <div class="cinema-left-ctrls">
+          <button class="cinema-ctrl-btn" id="cinemaPrevBtn" title="Previous Photo">⏮</button>
+          <button class="cinema-ctrl-btn play-pause" id="cinemaPlayBtn" title="Play / Pause">⏸</button>
+          <button class="cinema-ctrl-btn" id="cinemaNextBtn" title="Next Photo">⏭</button>
+          <span class="cinema-counter" id="cinemaCounter">ছবি ১ / ৩২</span>
+        </div>
+        <div class="cinema-music-tag" id="cinemaMusicTag">
+          <span class="music-bars-anim">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          <span id="cinemaMusicTitle">Isabel LaRosa - favorite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Music Player Floating Bar -->
+  <div class="music-player-bar" id="musicPlayer">
+    <div class="player-left">
+      <div class="disk-wrapper" id="diskWrapper">
+        <div class="vinyl-disk">
+          <div class="vinyl-center">🎵</div>
+        </div>
+      </div>
+      <div class="track-info">
+        <div class="track-title" id="trackTitle">Isabel LaRosa - favorite</div>
+        <div class="track-status" id="trackStatus">Now Playing 🎵</div>
+      </div>
+    </div>
+    <div class="player-controls">
+      <button class="ctrl-btn" id="prevTrackBtn" title="Previous Song">⏮</button>
+      <button class="ctrl-btn play-btn" id="playPauseBtn" title="Play / Pause">⏸</button>
+      <button class="ctrl-btn" id="nextTrackBtn" title="Next Song">⏭</button>
+      <div class="volume-container">
+        <span class="vol-icon" id="volIcon">🔊</span>
+        <input type="range" id="volSlider" min="0" max="1" step="0.05" value="0.85" title="Volume">
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Website Container -->
+  <main class="main-wrapper" id="mainWebsite">
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+      <div class="glass-badge glow-badge">🎉 আজ একটি মহিমান্বিত বিশেষ দিন 🎉</div>
+      <h1 class="hero-title">
+        শুভ জন্মদিন, <span class="highlight-name">রইসা (Raisa)</span>! 💖
+      </h1>
+      <p class="hero-subtitle">
+        তোমার জীবনের প্রতিটি অধ্যায় ভরে উঠুক জ্ঞানের আলোয়, অনাবিল শান্তিতে আর অফুরন্ত ভালোবাসায়!
+      </p>
+
+      <!-- Live Birthday Countdown Timer (August 25, 2026) -->
+      <div class="countdown-section">
+        <div class="countdown-label" id="countdownHeading">⏳ রইসার জন্মদিনের বিশেষ ক্ষণগণনা (২৫ আগস্ট, ২০২৬) ⏳</div>
+        <div class="countdown-timer" id="countdownTimer">
+          <div class="time-box">
+            <span class="time-num" id="cdDays">00</span>
+            <span class="time-text">দিন</span>
+          </div>
+          <div class="time-sep">:</div>
+          <div class="time-box">
+            <span class="time-num" id="cdHours">00</span>
+            <span class="time-text">ঘণ্টা</span>
+          </div>
+          <div class="time-sep">:</div>
+          <div class="time-box">
+            <span class="time-num" id="cdMinutes">00</span>
+            <span class="time-text">মিনিট</span>
+          </div>
+          <div class="time-sep">:</div>
+          <div class="time-box">
+            <span class="time-num" id="cdSeconds">00</span>
+            <span class="time-text">সেকেন্ড</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn btn-gold" id="reopenCinemaBtn">
+          <span>🎬 ফুলস্ক্রিন ভিডিও রিল আবার দেখুন ✨</span>
+        </button>
+        <button class="btn btn-secondary" id="scrollLetterBtn">
+          <span>💌 রইসার গোপন জন্মদিনের চিঠি পড়ুন ➔</span>
+        </button>
+        <button class="btn btn-primary" id="launchConfettiBtn">
+          <span>🎊 কনফেটি উৎসব</span>
+        </button>
+      </div>
+
+      <!-- Quick Stats / Highlights -->
+      <div class="stats-ribbon">
+        <div class="stat-card">
+          <span class="stat-icon">📚</span>
+          <span class="stat-value">জ্ঞান ও মেধা</span>
+          <span class="stat-label">বইপ্রেমী ও মনোযোগী শিক্ষার্থী</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">✨</span>
+          <span class="stat-value">৩২টি অমূল্য ছবি</span>
+          <span class="stat-label">স্মৃতির মণিমঞ্জুষা</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">💖</span>
+          <span class="stat-value">১০০% আন্তরিকতা</span>
+          <span class="stat-label">ভালোবাসা ও শুভকামনা</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- INTERACTIVE BIRTHDAY CAKE & CANDLE SECTION -->
+    <section class="section cake-section">
+      <div class="section-header">
+        <h2 class="section-title">জন্মদিনের কেক ও মোমবাতি 🎂</h2>
+        <p class="section-desc">মোমবাতিতে ক্লিক করো অথবা নিচের বাটনে চাপ দিয়ে ফুঁ দিয়ে নিভিয়ে তোমার মনের ইচ্ছে পূরণ করো।</p>
+      </div>
+
+      <div class="cake-container">
+        <div class="cake" id="birthdayCake">
+          <div class="candle" id="candle1">
+            <div class="flame active"></div>
+          </div>
+          <div class="candle" id="candle2">
+            <div class="flame active"></div>
+          </div>
+          <div class="candle" id="candle3">
+            <div class="flame active"></div>
+          </div>
+          <div class="cake-layer layer-top">
+            <div class="icing"></div>
+            <div class="cherry">🍓</div>
+            <div class="cherry c2">🍒</div>
+            <div class="cherry c3">🍓</div>
+          </div>
+          <div class="cake-layer layer-middle"></div>
+          <div class="cake-layer layer-bottom"></div>
+          <div class="cake-plate"></div>
+        </div>
+
+        <div class="cake-controls">
+          <button class="btn btn-gold" id="blowCandlesBtn">
+            <span id="blowBtnText">🌬️ মোমবাতি ফুঁ দিয়ে নিভাও!</span>
+          </button>
+          <div class="wish-reveal-msg" id="wishRevealMsg">
+            ✨ রইসার মনের সব স্বপ্ন, লক্ষ্য আর প্রার্থনা পূর্ণ হোক! শুভ জন্মদিন! 💖🎂 ✨
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY & MEMORY SLIDESHOW SECTION -->
+    <section class="section gallery-section" id="gallerySection">
+      <div class="section-header">
+        <div class="glass-badge">📸 ৩২টি সুন্দর মুহূর্তের সংগ্রহশালা</div>
+        <h2 class="section-title">রইসার স্মৃতির অ্যালবাম</h2>
+        <p class="section-desc">৩২টি রঙিন স্মৃতির কোলাজ ও স্লাইডশো</p>
+      </div>
+
+      <!-- Gallery View Controls -->
+      <div class="view-switch-tabs">
+        <button class="tab-btn active" data-view="slideshow">🎞️ অ্যানিমেটেড স্লাইডশো</button>
+        <button class="tab-btn" data-view="grid">🖼️ ফটো গ্রিড কোলাজ</button>
+      </div>
+
+      <!-- Cinematic Slideshow Container -->
+      <div class="slideshow-wrapper" id="slideshowView">
+        <div class="slideshow-card">
+          <div class="slideshow-img-box" id="slideshowBox">
+            <!-- Animated Progress Bar -->
+            <div class="slide-progress-track">
+              <div class="slide-progress-bar" id="slideProgressBar"></div>
+            </div>
+            
+            <!-- Floating Sparkles & Hearts Container -->
+            <div class="photo-particle-overlay" id="photoParticleOverlay"></div>
+
+            <!-- Background Blur Backdrop -->
+            <img id="bgSlideBackdrop" class="slide-backdrop-blur" src="images/6077836997310485183.jpg" alt="Backdrop">
+
+            <!-- Main Slide Image with Ken Burns Motion Animation -->
+            <img id="mainSlideImg" class="slide-img ken-burns-zoom-in" src="images/6077836997310485183.jpg" alt="Memory Photo">
+
+            <div class="slideshow-overlay">
+              <div class="slide-status-badge">
+                <span class="pulse-dot"></span>
+                <span id="animStatusText">অটো অ্যানিমেশন চালু ✨</span>
+              </div>
+              <div class="slide-right-tools">
+                <span class="slide-counter" id="slideCounter">১ / ৩২</span>
+                <button class="zoom-btn" id="zoomCurrentBtn" title="Full Screen View">🔍 জুম</button>
+              </div>
+            </div>
+          </div>
+          <div class="slideshow-nav">
+            <button class="slide-nav-btn" id="prevSlideBtn" title="Previous Photo">❮</button>
+            <div class="slide-actions">
+              <button class="mini-btn active-anim" id="toggleAutoplayBtn">⏸ অটো প্লে: চালু</button>
+              <button class="mini-btn" id="randomSlideBtn">🎲 এলোমেলো ছবি</button>
+            </div>
+            <button class="slide-nav-btn" id="nextSlideBtn" title="Next Photo">❯</button>
+          </div>
+        </div>
+
+        <!-- Thumbnail Strip -->
+        <div class="thumbnail-strip" id="thumbnailStrip">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Photo Grid View -->
+      <div class="photo-grid-container hidden" id="gridView">
+        <div class="photo-grid" id="photoGrid">
+          <!-- Populated by JS with all 32 photos -->
+        </div>
+      </div>
+    </section>
+
+    <!-- WISH GENERATOR & BLESSINGS -->
+    <section class="section wishes-section">
+      <div class="section-header">
+        <h2 class="section-title">জন্মদিনের শুভাশীষ ও প্রার্থনা 🌟</h2>
+        <p class="section-desc">রইসার জীবনের নতুন বছরের প্রতিটি দিনের জন্য শুভেচ্ছা</p>
+      </div>
+
+      <div class="wishes-grid">
+        <div class="wish-card">
+          <div class="wish-card-icon">📚</div>
+          <h3>জ্ঞানের সমৃদ্ধি</h3>
+          <p>বইয়ের প্রতিটি পাতার মতো তোমার জীবন ভরে উঠুক গভীর জ্ঞানে, প্রজ্ঞায় আর বুদ্ধিমত্তায়।</p>
+        </div>
+        <div class="wish-card">
+          <div class="wish-card-icon">🎯</div>
+          <h3>পড়াশোনায় মহাসাফল্য</h3>
+          <p>তোমার সকল অধ্যবসায় ও পরিশ্রম এনে দিক শ্রেষ্ঠ ফলাফল আর গৌরবময় সাফল্য।</p>
+        </div>
+        <div class="wish-card">
+          <div class="wish-card-icon">🌸</div>
+          <h3>প্রশান্তি ও আনন্দ</h3>
+          <p>তোমার মন যেন সর্বদা থাকে শান্ত, নির্মল আর খাঁটি খুশিতে ভরপুর।</p>
+        </div>
+        <div class="wish-card">
+          <div class="wish-card-icon">🎁</div>
+          <h3>অপ্রত্যাশিত চমক</h3>
+          <p>জীবনের প্রতিটি বাঁকে তোমার জন্য অপেক্ষা করুক সুন্দর সব চমক ও সৌভাগ্য।</p>
+        </div>
+      </div>
+
+      <!-- Interactive Fortune / Wish Generator -->
+      <div class="wish-generator-box">
+        <h3>✨ রইসার জন্য একটি বিশেষ দোয়া / শুভকামনা ✨</h3>
+        <p id="generatedWishText">বাটনে চাপ দিয়ে নতুন একটি অনুপ্রেরণামূলক শুভকামনা গ্রহণ করো!</p>
+        <button class="btn btn-primary" id="generateWishBtn">🌟 আরেকটি শুভেচ্ছা নিন</button>
+      </div>
+    </section>
+
+    <!-- SPECIAL BIRTHDAY LETTER (চিঠি) SECTION - PLACED AT THE FINAL CLIMAX -->
+    <section class="section letter-section" id="letterSection">
+      <div class="section-header">
+        <div class="glass-badge glow-badge">💌 হৃদয়ের গভীর থেকে</div>
+        <h2 class="section-title">রইসার জন্য একটি বিশেষ জন্মদিনের চিঠি</h2>
+        <p class="section-desc">নিচের খামটির লাল সিলমোহরে ক্লিক করে তোমার জন্য লেখা বিশেষ জন্মদিনের চিঠিটি উন্মোচন করো।</p>
+      </div>
+
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap" id="envelopeFlap"></div>
+          <div class="envelope-seal" id="envelopeSeal">
+            <div class="seal-heart">💖</div>
+            <span class="seal-text">OPEN ME</span>
+          </div>
+          <div class="envelope-pocket"></div>
+          
+          <!-- The Letter Content -->
+          <div class="letter-paper" id="letterPaper">
+            <div class="letter-inner">
+              <div class="letter-decor top">✨ 🌸 📖 🌸 ✨</div>
+              <h3 class="letter-heading">প্রিয় রইসা,</h3>
+              
+              <p class="letter-body">
+                আজকের এই অপূর্ব দিনে তোমাকে জানাই শুভ জন্মদিনের হৃদয়নিংড়ানো ভালোবাসা ও রক্তিম শুভেচ্ছা! 🎂🌸
+              </p>
+              
+              <p class="letter-body">
+                তুমি সত্যিই চমৎকার এবং প্রশংসনীয় একজন মানুষ। একজন শিক্ষার্থী হিসেবে পড়াশোনায় তোমার যে একাগ্রতা, অধ্যবসায় আর গভীর মনোযোগ—তা সত্যিই সবাইকে মুগ্ধ ও অনুপ্রাণিত করে। 
+              </p>
+
+              <p class="letter-body">
+                বইয়ের পাতার মাঝে ডুব দিয়ে নতুন কিছু জানা এবং প্রচুর বই পড়ার যে সুন্দর অভ্যাস ও জ্ঞানতৃষ্ণা তোমার আছে, তা তোমাকে অন্যদের চেয়ে সবসময় অনন্য ও আলোকিত করে রাখে। 📚✨ তোমার এই সুন্দর মন, ইতিবাচকতা আর মিষ্টি হাসি যেন আজীবন এমন স্নিগ্ধভাবেই আলো ছড়িয়ে যায়।
+              </p>
+
+              <div class="mystery-box">
+                <div class="mystery-title">🎁 একটি ছোট্ট রহস্য ও ধাঁধা:</div>
+                <p class="mystery-text">
+                  তুমি কি আন্দাজ করতে পারছো—কে এই সম্পূর্ণ ওয়েবসাইট, ভিডিও আর উপহারটি তোমার জন্য এত যত্ন নিয়ে তৈরি করেছে? খুঁজে বের করার চেষ্টা করো তো আমি কে! 😉🔍
+                </p>
+                <div class="midnight-reveal-badge">
+                  <span>🤫 বেশি চিন্তা করতে হবে না—</span>
+                  <strong>আজ রাত ঠিক ১২:০০ টায় আমি নিজের পরিচয় তোমার সামনে প্রকাশ করবো! ✨⏳</strong>
+                </div>
+              </div>
+
+              <div class="letter-sign">
+                <p>সবসময় তোমার মঙ্গল কামনায়,</p>
+                <p class="signature">✨ তোমার একজন শুভাকাঙ্ক্ষী ✨</p>
+              </div>
+
+              <!-- Action Bar for Easy Reading -->
+              <div class="letter-action-bar">
+                <button type="button" class="btn-letter-act btn-fullscreen-read" id="openFullReaderBtn">
+                  📖 বড় স্ক্রিনে স্বাচ্ছন্দ্যে পড়ুন ➔
+                </button>
+                <button type="button" class="btn-letter-act btn-fold" id="closeLetterBtn">
+                  ✕ ভাঁজ করুন
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Countdown to Midnight 12:00 AM Reveal -->
+      <div class="midnight-timer-box">
+        <div class="midnight-timer-title">⏳ রাত ১২:০০ টায় পরিচয় প্রকাশের কাউন্টডাউন:</div>
+        <div class="midnight-clock" id="midnightClock">00 : 00 : 00</div>
+        <p class="midnight-hint">রাত ১২:০০ টায় রহস্য উন্মোচিত হবে! 🤫</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>Created with 💖 for <strong>Raisa</strong>'s Birthday Celebration</p>
+      <p class="footer-sub">🎈 আজ রাত ১২:০০ টায় রহস্যের সমাধান হবে! 🎈</p>
+    </footer>
+
+  </main>
+
+  <!-- DEDICATED FULLSCREEN LETTER READER MODAL (আরামদায়ক ফুলস্ক্রিন রিডার) -->
+  <div class="letter-reader-modal" id="letterReaderModal">
+    <div class="reader-backdrop" id="readerBackdrop"></div>
+    <div class="reader-scroll-container">
+      <div class="reader-parchment-card">
+        <button class="reader-close-btn" id="readerCloseBtn" title="Close Letter">✕ বন্ধ করুন</button>
+        
+        <div class="reader-decor-header">✨ 🌸 📖 🌸 ✨</div>
+        <h2 class="reader-heading">প্রিয় রইসা,</h2>
+        
+        <div class="reader-body-content">
+          <p>
+            আজকের এই অপূর্ব দিনে তোমাকে জানাই শুভ জন্মদিনের হৃদয়নিংড়ানো ভালোবাসা ও রক্তিম শুভেচ্ছা! 🎂🌸
+          </p>
+          
+          <p>
+            তুমি সত্যিই চমৎকার এবং প্রশংসনীয় একজন মানুষ। একজন শিক্ষার্থী হিসেবে পড়াশোনায় তোমার যে একাগ্রতা, অধ্যবসায় আর গভীর মনোযোগ—তা সত্যিই সবাইকে মুগ্ধ ও অনুপ্রাণিত করে।
+          </p>
+
+          <p>
+            বইয়ের পাতার মাঝে ডুব দিয়ে নতুন কিছু জানা এবং প্রচুর বই পড়ার যে সুন্দর অভ্যাস ও জ্ঞানতৃষ্ণা তোমার আছে, তা তোমাকে অন্যদের চেয়ে সবসময় অনন্য ও আলোকিত করে রাখে। 📚✨ তোমার এই সুন্দর মন, ইতিবাচকতা আর মিষ্টি হাসি যেন আজীবন এমন স্নিগ্ধভাবেই আলো ছড়িয়ে যায়।
+          </p>
+
+          <div class="reader-mystery-card">
+            <div class="reader-mystery-badge">🎁 একটি ছোট্ট রহস্য ও ধাঁধা:</div>
+            <p>
+              তুমি কি আন্দাজ করতে পারছো—কে এই সম্পূর্ণ ওয়েবসাইট, ভিডিও আর উপহারটি তোমার জন্য এত যত্ন নিয়ে তৈরি করেছে? খুঁজে বের করার চেষ্টা করো তো আমি কে! 😉🔍
+            </p>
+            <div class="reader-midnight-alert">
+              <span>🤫 বেশি চিন্তা করতে হবে না—</span>
+              <strong>আজ রাত ঠিক ১২:০০ টায় আমি নিজের পরিচয় তোমার সামনে প্রকাশ করবো! ✨⏳</strong>
+            </div>
+          </div>
+
+          <div class="reader-sign-box">
+            <p>সবসময় তোমার মঙ্গল কামনায়,</p>
+            <p class="reader-signature">✨ তোমার একজন শুভাকাঙ্ক্ষী ✨</p>
+          </div>
+        </div>
+
+        <div class="reader-bottom-close">
+          <button class="btn btn-gold" id="readerBottomCloseBtn">
+            <span>✓ পড়া শেষ হয়েছে (বন্ধ করুন)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR FULLSCREEN PHOTOS -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxCloseBtn">✕</button>
+    <button class="lightbox-prev" id="lightboxPrevBtn">❮</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Zoomed Photo">
+      <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+    <button class="lightbox-next" id="lightboxNextBtn">❯</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
