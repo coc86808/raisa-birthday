@@ -68,9 +68,10 @@ const photoFiles = [
 ];
 
 /* ==========================================================
-   1. 3D ORBITING BACKGROUND PHOTO RING (থ্রি-ডি ঘূর্ণায়মান ব্যাকগ্রাউন্ড ফটো রিং)
+   1. 3D ORBITING BACKGROUND PHOTO RING (DESKTOP ONLY)
    ========================================================== */
 function init3DPhotoRing() {
+  if (window.innerWidth <= 768) return; // Prevent lag on mobile devices
   const ringContainers = [
     document.getElementById('bgPhotoRing'),
     document.getElementById('cinemaBgPhotoRing')
@@ -95,9 +96,10 @@ function init3DPhotoRing() {
 }
 
 /* ==========================================================
-   2. FLOATING GLOWING PHOTO BUBBLES & CRYSTALS (ভাসমান নিয়ন ফটো বাবল)
+   2. FLOATING GLOWING PHOTO BUBBLES & CRYSTALS (DESKTOP ONLY)
    ========================================================== */
 function initPhotoBubblesAndCrystals() {
+  if (window.innerWidth <= 768) return; // Prevent lag on mobile devices
   const bubbleContainers = [
     document.getElementById('bgPhotoBubbles'),
     document.getElementById('cinemaPhotoBubbles')
@@ -106,7 +108,7 @@ function initPhotoBubblesAndCrystals() {
 
   function spawnBubble() {
     bubbleContainers.forEach(container => {
-      if (!container || container.children.length > 5) return;
+      if (!container || container.children.length > 4) return;
       const b = document.createElement('div');
       b.className = 'photo-bubble';
       const randPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
@@ -119,7 +121,7 @@ function initPhotoBubblesAndCrystals() {
   }
 
   function spawnCrystal() {
-    if (!crystalContainer || crystalContainer.children.length > 4) return;
+    if (!crystalContainer || crystalContainer.children.length > 3) return;
     const c = document.createElement('div');
     c.className = 'photo-crystal-tile';
     const randPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
@@ -130,18 +132,19 @@ function initPhotoBubblesAndCrystals() {
     setTimeout(() => c.remove(), 22000);
   }
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 2; i++) {
     setTimeout(spawnBubble, i * 1400);
     setTimeout(spawnCrystal, i * 2000);
   }
-  setInterval(spawnBubble, 4000);
-  setInterval(spawnCrystal, 5500);
+  setInterval(spawnBubble, 5000);
+  setInterval(spawnCrystal, 6500);
 }
 
 /* ==========================================================
-   3. KINETIC BACKGROUND PHOTO WALL STREAMS (ছবি দিয়ে ব্যাকগ্রাউন্ড পূরণ)
+   3. KINETIC BACKGROUND PHOTO WALL STREAMS (DESKTOP ONLY)
    ========================================================== */
 function initBackgroundPhotoStreams() {
+  if (window.innerWidth <= 768) return; // Prevent lag on mobile devices
   const streamCols = [
     document.getElementById('streamCol1'),
     document.getElementById('streamCol2'),
@@ -153,7 +156,6 @@ function initBackgroundPhotoStreams() {
     document.getElementById('cinemaStream4')
   ];
 
-  // Distribute all 32 photos into the columns and duplicate them for seamless loop
   const total = photoFiles.length;
   streamCols.forEach((col, colIdx) => {
     if (!col) return;
@@ -162,7 +164,6 @@ function initBackgroundPhotoStreams() {
     for (let i = 0; i < 8; i++) {
       colPhotos.push(photoFiles[(startIndex + i) % total]);
     }
-    // Duplicate for infinite scroll loop
     const fullList = [...colPhotos, ...colPhotos];
     fullList.forEach((file, i) => {
       const card = document.createElement('div');
@@ -176,15 +177,16 @@ function initBackgroundPhotoStreams() {
 }
 
 /* ==========================================================
-   2. FLOATING 3D BACKGROUND POLAROIDS
+   4. FLOATING 3D BACKGROUND POLAROIDS
    ========================================================== */
 function initFloatingPolaroids() {
+  if (window.innerWidth <= 768) return; // Prevent lag on mobile devices
   const container = document.getElementById('bgPolaroids');
   if (!container) return;
   const captions = ['Happy Birthday 🎂', 'Sweet Smile ✨', 'Raisa 💖', 'Grace 🌸', 'Books & Knowledge 📚', 'Joy 💫'];
 
   function spawnPolaroid() {
-    if (document.querySelectorAll('.polaroid-card').length > 6) return;
+    if (document.querySelectorAll('.polaroid-card').length > 5) return;
     const p = document.createElement('div');
     p.className = 'polaroid-card';
     const randPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
@@ -203,14 +205,14 @@ function initFloatingPolaroids() {
     setTimeout(() => p.remove(), 21000);
   }
 
-  for (let i = 0; i < 4; i++) {
-    setTimeout(spawnPolaroid, i * 1200);
+  for (let i = 0; i < 3; i++) {
+    setTimeout(spawnPolaroid, i * 1500);
   }
-  setInterval(spawnPolaroid, 3500);
+  setInterval(spawnPolaroid, 4500);
 }
 
 /* ==========================================================
-   3. MUSIC PLAYLIST & BEAT-REACTIVE AUDIO ENGINE
+   5. MUSIC PLAYLIST & BEAT-REACTIVE AUDIO ENGINE
    ========================================================== */
 const playlist = [
   { title: "Isabel LaRosa - favorite", src: "music/Isabel LaRosa - favorite (Lyrics).mp3" },
@@ -224,23 +226,16 @@ const playlist = [
 let currentTrackIndex = 0;
 let isPlaying = false;
 let audio = new Audio();
-audio.crossOrigin = "anonymous";
+audio.preload = "auto";
 let audioCtx = null;
 let analyser = null;
-let audioSource = null;
 
 function initAudioContext() {
   if (audioCtx) return;
   try {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 64;
-    audioSource = audioCtx.createMediaElementSource(audio);
-    audioSource.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    startBeatDetectionLoop();
+    startSynthesizedBeatLoop();
   } catch (e) {
-    // Fallback if crossOrigin restriction on local file
     startSynthesizedBeatLoop();
   }
 }
@@ -340,20 +335,29 @@ function initMusicPlayer() {
     audio.volume = parseFloat(volSlider.value);
   }
 
+  const mobileAudioUnlock = document.getElementById('mobileAudioUnlock');
+
   function playTrack() {
     initAudioContext();
     if (audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
 
-    audio.play().then(() => {
-      isPlaying = true;
-      playPauseBtn.textContent = '⏸';
-      diskWrapper.classList.add('playing');
-      trackStatus.textContent = 'Now Playing 🎵';
-    }).catch(() => {
-      trackStatus.textContent = 'Playing on touch ✨';
-    });
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isPlaying = true;
+        playPauseBtn.textContent = '⏸';
+        diskWrapper.classList.add('playing');
+        trackStatus.textContent = 'Now Playing 🎵';
+        if (mobileAudioUnlock) mobileAudioUnlock.classList.add('hidden');
+      }).catch(() => {
+        // Autoplay blocked by mobile browser policy
+        isPlaying = false;
+        trackStatus.textContent = 'Tap to play 🎵';
+        if (mobileAudioUnlock) mobileAudioUnlock.classList.remove('hidden');
+      });
+    }
   }
 
   function pauseTrack() {
@@ -367,17 +371,23 @@ function initMusicPlayer() {
   loadTrack(0);
   playTrack();
 
-  const autoPlayUnlock = () => {
+  const handleUserUnlockAudio = () => {
     if (!isPlaying || audio.paused) {
       playTrack();
     }
-    window.removeEventListener('pointerdown', autoPlayUnlock);
-    window.removeEventListener('keydown', autoPlayUnlock);
-    window.removeEventListener('touchstart', autoPlayUnlock);
+    if (mobileAudioUnlock) mobileAudioUnlock.classList.add('hidden');
   };
-  window.addEventListener('pointerdown', autoPlayUnlock, { once: true });
-  window.addEventListener('keydown', autoPlayUnlock, { once: true });
-  window.addEventListener('touchstart', autoPlayUnlock, { once: true });
+
+  ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, handleUserUnlockAudio, { passive: true });
+    document.addEventListener(evt, handleUserUnlockAudio, { passive: true });
+  });
+
+  mobileAudioUnlock?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    playTrack();
+    mobileAudioUnlock.classList.add('hidden');
+  });
 
   playPauseBtn.addEventListener('click', () => {
     if (isPlaying) pauseTrack(); else playTrack();

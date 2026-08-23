@@ -2601,9 +2601,33 @@ body {
 .lightbox-next { right: 25px; }
 
 /* ==========================================================
-   COMPREHENSIVE MOBILE & TABLET RESPONSIVE STYLES
+   COMPREHENSIVE MOBILE & TABLET OPTIMIZATIONS (ZERO LAG)
    ========================================================== */
 @media (max-width: 768px) {
+  /* Disable heavy background loops that cause mobile GPU lag */
+  .bg-photo-streams,
+  .cinema-bg-photo-streams,
+  .bg-photo-ring-stage,
+  .cinema-bg-photo-ring-stage,
+  .bg-photo-bubbles,
+  .bg-photo-crystals,
+  .speed-lines-overlay {
+    display: none !important;
+  }
+
+  /* Disable heavy blur rendering on mobile GPUs */
+  .glass-card,
+  .glass-badge,
+  .cinema-caption-box,
+  .countdown-section,
+  .wish-card,
+  .slideshow-card,
+  .music-player-bar {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(22, 6, 32, 0.95) !important;
+  }
+
   .hero-title { font-size: 2.4rem; }
   .highlight-name { font-size: 3.2rem; }
   .section-title { font-size: 2rem; }
@@ -2659,7 +2683,7 @@ body {
   .section-title { font-size: 1.7rem; }
   .section-desc { font-size: 0.98rem; }
 
-  /* Cinema Fullscreen on Mobile */
+  /* Cinema Fullscreen on Mobile - Clean GPU Friendly */
   .cinema-topbar { padding: 10px 12px; }
   .cinema-badge { font-size: 11px; padding: 5px 12px; }
   .cinema-icon-btn { padding: 6px 12px; font-size: 12px; border-radius: 20px; }
@@ -2728,4 +2752,32 @@ body {
   .lightbox-prev { left: 10px; width: 40px; height: 40px; font-size: 18px; }
   .lightbox-next { right: 10px; width: 40px; height: 40px; font-size: 18px; }
   .lightbox-close { top: 15px; right: 15px; width: 38px; height: 38px; font-size: 18px; }
+}
+
+/* Floating Tap to Play Sound Banner on Mobile */
+.mobile-audio-unlock-banner {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff0055, #9b51e0);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 8px 25px rgba(255, 0, 85, 0.6);
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  animation: pulseAudioBanner 1.5s infinite alternate;
+}
+@keyframes pulseAudioBanner {
+  0% { transform: translateX(-50%) scale(1); }
+  100% { transform: translateX(-50%) scale(1.06); }
+}
+.mobile-audio-unlock-banner.hidden {
+  display: none !important;
 }
