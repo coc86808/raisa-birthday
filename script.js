@@ -1640,6 +1640,11 @@ function initEnvelope() {
     e.preventDefault();
     openReaderModal();
   });
+  const floatingLetterBadge = document.getElementById('floatingLetterBadge');
+  floatingLetterBadge?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openReaderModal();
+  });
 }
 
 /* ==========================================================

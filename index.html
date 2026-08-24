@@ -52,6 +52,13 @@
     <span>🎵 গান ও সুর শুনতে এখানে স্পর্শ করুন ✨</span>
   </div>
 
+  <!-- Persistent Floating Letter Badge (Cannot be missed!) -->
+  <div class="floating-letter-pill" id="floatingLetterBadge" title="রইসার বিশেষ চিঠি পড়ুন">
+    <span class="pill-icon">💌</span>
+    <span class="pill-title">রইসার চিঠি</span>
+    <span class="pill-badge-dot"></span>
+  </div>
+
   <!-- Floating 3D Icons & Balloons Layer -->
   <div id="balloonContainer" aria-hidden="true"></div>
   <div id="floating3DObjects" class="floating-3d-container" aria-hidden="true"></div>
@@ -227,8 +234,10 @@
         <button class="btn btn-gold" id="reopenCinemaBtn">
           <span>🎬 ফুলস্ক্রিন ভিডিও রিল আবার দেখুন ✨</span>
         </button>
-        <button class="btn btn-secondary" id="scrollLetterBtn">
-          <span>💌 রইসার গোপন জন্মদিনের চিঠি পড়ুন ✨</span>
+        <button class="btn btn-secondary btn-letter-glow" id="scrollLetterBtn">
+          <span class="letter-btn-icon">💌</span>
+          <span>রইসার গোপন জন্মদিনের চিঠি পড়ুন ✨</span>
+          <span class="unread-pulse-badge">১</span>
         </button>
         <button class="btn btn-primary" id="launchConfettiBtn">
           <span>🎊 কনফেটি উৎসব</span>
@@ -406,6 +415,11 @@
         <div class="glass-badge glow-badge">💌 হৃদয়ের গভীর থেকে</div>
         <h2 class="section-title">রইসার জন্য একটি বিশেষ জন্মদিনের চিঠি</h2>
         <p class="section-desc">নিচের খামটির লাল সিলমোহরে ক্লিক করে তোমার জন্য লেখা বিশেষ জন্মদিনের চিঠিটি উন্মোচন করো।</p>
+      </div>
+
+      <div class="envelope-hint-callout">
+        <span class="hint-pulse-icon">👆</span>
+        <span class="hint-pulse-text">চিঠিটি পড়তে খামের গোল্ডেন সিলমোহরে চাপ দিন অথবা উপরের বাটনে ক্লিক করুন ✨</span>
       </div>
 
       <div class="envelope-wrapper">

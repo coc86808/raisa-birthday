@@ -2001,6 +2001,105 @@ body {
 }
 
 /* ==========================================================
+   PERSISTENT FLOATING LETTER PILL & HERO BUTTON GLOW (UNMISSABLE)
+   ========================================================== */
+.floating-letter-pill {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #ff0055, #a71842, #ffd700);
+  background-size: 200% 200%;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 35px;
+  font-family: var(--font-bengali);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 3000;
+  box-shadow: 0 10px 30px rgba(255, 0, 85, 0.65), 0 0 25px rgba(255, 215, 0, 0.6);
+  border: 2px solid rgba(255, 215, 0, 0.9);
+  animation: floatPillBounce 2s ease-in-out infinite alternate;
+  transition: transform 0.25s ease;
+}
+.floating-letter-pill:hover {
+  transform: scale(1.1) translateY(-4px);
+}
+@keyframes floatPillBounce {
+  0% { transform: translateY(0); box-shadow: 0 10px 30px rgba(255, 0, 85, 0.65); }
+  100% { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(255, 0, 85, 0.9), 0 0 30px rgba(255, 215, 0, 0.8); }
+}
+
+.pill-icon { font-size: 20px; }
+.pill-badge-dot {
+  width: 10px;
+  height: 10px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff88;
+  animation: pulseDotGreen 1s infinite alternate;
+}
+@keyframes pulseDotGreen {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Button Letter Glow in Hero */
+.btn-letter-glow {
+  background: linear-gradient(135deg, #a71842, #ff0055, #ffd700) !important;
+  background-size: 200% 200% !important;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 215, 0, 0.9) !important;
+  box-shadow: 0 8px 25px rgba(255, 0, 85, 0.7), 0 0 25px rgba(255, 215, 0, 0.6) !important;
+  animation: btnGlowShift 3s ease infinite alternate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+@keyframes btnGlowShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.unread-pulse-badge {
+  background: #ffd700;
+  color: #5c0f24;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 12px;
+  margin-left: 6px;
+  box-shadow: 0 0 10px #ffd700;
+}
+
+/* Envelope Hint Callout */
+.envelope-hint-callout {
+  max-width: 520px;
+  margin: 0 auto 20px;
+  background: rgba(255, 0, 85, 0.18);
+  border: 1.5px dashed rgba(255, 215, 0, 0.85);
+  border-radius: 25px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #ffd700;
+  font-family: var(--font-bengali);
+  font-size: 14.5px;
+  font-weight: 600;
+  animation: hintPulse 2s infinite alternate;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+@keyframes hintPulse {
+  0% { transform: scale(0.98); opacity: 0.9; }
+  100% { transform: scale(1.02); opacity: 1; border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5); }
+}
+
+/* ==========================================================
    FULLSCREEN LUXURY LETTER READER MODAL
    ========================================================== */
 .letter-reader-modal {
