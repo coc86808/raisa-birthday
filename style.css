@@ -2092,6 +2092,10 @@ body {
   animation: floatPillBounce 2s ease-in-out infinite alternate;
   transition: transform 0.25s ease;
 }
+
+body.cinema-active .floating-letter-pill {
+  display: none !important;
+}
 .floating-letter-pill:hover {
   transform: scale(1.1) translateY(-4px);
 }

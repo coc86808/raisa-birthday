@@ -1308,6 +1308,7 @@ function initCinemaExperience() {
 
   function openCinema() {
     cinemaWrapper.classList.remove('hidden');
+    document.body.classList.add('cinema-active');
     document.body.style.overflow = 'hidden';
     updateCinemaSlide(0);
     startCinemaPlayback();
@@ -1316,8 +1317,9 @@ function initCinemaExperience() {
   function closeCinema() {
     pauseCinemaPlayback();
     cinemaWrapper.classList.add('hidden');
+    document.body.classList.remove('cinema-active');
     document.body.style.overflow = 'auto';
-    window.triggerConfetti(window.innerWidth / 2, window.innerHeight * 0.35, 100);
+    window.triggerConfetti?.(window.innerWidth / 2, window.innerHeight * 0.35, 100);
   }
 
   openCinema();
