@@ -215,11 +215,11 @@ function initFloatingPolaroids() {
    5. MUSIC PLAYLIST & BEAT-REACTIVE AUDIO ENGINE
    ========================================================== */
 const playlist = [
+  { title: "Special Melody for Raisa 💖", src: "music/sakin for raisa.m4a" },
   { title: "Happy Birthday Song 🎂", src: "music/Happy Birthday Song.mp3" },
   { title: "Classical Violin & Strings", src: "music/viacheslavstarostin-classical-violin-strings-music-408073.mp3" },
   { title: "Romantic Acoustic Melody", src: "music/andriig-sad-sad-acoustic-music-566795.mp3" },
-  { title: "Peaceful Lo-Fi Beats", src: "music/prettyjohn1-sad-lofi-533422.mp3" },
-  { title: "Isabel LaRosa - favorite", src: "music/Isabel LaRosa - favorite (Lyrics).mp3" }
+  { title: "Peaceful Lo-Fi Beats", src: "music/prettyjohn1-sad-lofi-533422.mp3" }
 ];
 
 let currentTrackIndex = 0;
@@ -266,17 +266,17 @@ function startSynthesizedBeatLoop() {
 }
 
 /* ==========================================================
-   SONG LYRICS / POETIC QUOTES SYNCHRONIZER DATA (Happy Birthday Song)
+   SONG LYRICS / POETIC QUOTES SYNCHRONIZER DATA (Sakin For Raisa)
    ========================================================== */
 const songLyrics = [
-  { time: 0, en: "♪ Happy Birthday to You, Raisa! 🎂 ✨ ♪", bn: "♪ রইসার জন্মদিনের শুভ ও আনন্দময় আয়োজন ♪" },
-  { time: 4.5, en: "Happy Birthday to You, shine bright...", bn: "শুভ জন্মদিন রইসা! চারিদিকে আলো ছড়াও..." },
-  { time: 9.0, en: "Happy Birthday Dear Raisa...", bn: "প্রিয় রইসা, তোমার প্রতিটি দিন ভরে উঠুক সফলতায়..." },
-  { time: 13.5, en: "Happy Birthday to You! May all dreams come true...", bn: "তোমার জীবনের সকল ইচ্ছা আর মনের প্রার্থনা পূর্ণ হোক..." },
-  { time: 18.0, en: "Dedicated scholar, glowing with grace and wisdom...", bn: "মেধাবী বইপ্রেমী ও অনন্য শিক্ষার্থী রইসার ভবিষ্যৎ হোক উজ্জ্বল..." },
-  { time: 23.0, en: "Keep smiling forever, spread joy everywhere...", bn: "তোমার মুখের মিষ্টি হাসি সারাজীবন আলো ছড়াক..." },
-  { time: 28.0, en: "Tonight at 12:00 AM, a secret will be revealed...", bn: "আজ রাত ঠিক ১২:০০ টায় এক গোপন রহস্যের সমাধান হবে... 🤫" },
-  { time: 33.0, en: "Happy Birthday Raisa! Celebrate with love and happiness...", bn: "শুভ জন্মদিন রইসা! অনেক ভালোবাসা ও দোয়া রইলো... 💖🎉" }
+  { time: 0, en: "♪ A Special Melody Dedicated to Raisa 💖 ✨ ♪", bn: "♪ রইসার জন্য একটি অত্যন্ত বিশেষ ও হৃদয়গ্রাহী সুর ♪" },
+  { time: 5.0, en: "In every note, a heartfelt prayer and infinite love...", bn: "প্রতিটি সুরে মিশে আছে অসীম ভালোবাসা আর আন্তরিক দোয়া..." },
+  { time: 10.5, en: "To the most dedicated student and book lover, Raisa...", bn: "মেধাবী বইপ্রেমী ও অনন্য শিক্ষার্থী রইসাকে জন্মদিনের রক্তিম শুভেচ্ছা..." },
+  { time: 16.0, en: "May all your dreams and unspoken wishes come true...", bn: "তোমার জীবনের সকল স্বপ্ন আর না-বলা ইচ্ছা পূর্ণ হোক..." },
+  { time: 22.0, en: "Like stars glowing across the night, keep shining bright...", bn: "রাতের তারার মতো দীপ্তিময় হয়ে আলো ছড়াও সবসময়..." },
+  { time: 28.0, en: "Tonight at 12:00 AM, a special mystery awaits...", bn: "আজ রাত ঠিক ১২:০০ টায় এক গোপন রহস্যের সমাধান হবে... 🤫" },
+  { time: 34.0, en: "Always keep that sweet, beautiful smile on your face...", bn: "তোমার মুখের এই পবিত্র মিষ্টি হাসি সারাজীবন অটুট থাকুক..." },
+  { time: 40.0, en: "Happy Birthday Raisa! Wishing you endless success & happiness...", bn: "শুভ জন্মদিন রইসা! তোমার আগামী দিনগুলো ভরে উঠুক পরম আনন্দে... ✨🎂" }
 ];
 
 function initMusicPlayer() {
