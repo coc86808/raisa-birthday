@@ -224,8 +224,9 @@ const playlist = [
 
 let currentTrackIndex = 0;
 let isPlaying = false;
-let audio = new Audio();
+let audio = document.getElementById('bgAudio') || new Audio();
 audio.preload = "auto";
+audio.autoplay = true;
 let audioCtx = null;
 let analyser = null;
 
@@ -326,8 +327,6 @@ function initMusicPlayer() {
     audio.volume = parseFloat(volSlider.value);
   }
 
-  const mobileAudioUnlock = document.getElementById('mobileAudioUnlock');
-
   function playTrack() {
     initAudioContext();
     if (audioCtx && audioCtx.state === 'suspended') {
@@ -341,12 +340,13 @@ function initMusicPlayer() {
         playPauseBtn.textContent = '⏸';
         diskWrapper.classList.add('playing');
         trackStatus.textContent = 'Now Playing 🎵';
-        if (mobileAudioUnlock) mobileAudioUnlock.classList.add('hidden');
       }).catch(() => {
-        // Autoplay blocked by mobile browser policy
-        isPlaying = false;
-        trackStatus.textContent = 'Tap to play 🎵';
-        if (mobileAudioUnlock) mobileAudioUnlock.classList.remove('hidden');
+        // Start playing muted and passively unmute on any subtle movement
+        audio.muted = true;
+        audio.play().then(() => {
+          isPlaying = true;
+          trackStatus.textContent = 'Now Playing 🎵';
+        }).catch(() => {});
       });
     }
   }
@@ -362,22 +362,18 @@ function initMusicPlayer() {
   loadTrack(0);
   playTrack();
 
-  const handleUserUnlockAudio = () => {
-    if (!isPlaying || audio.paused) {
+  const passiveUnmute = () => {
+    if (audio.muted) {
+      audio.muted = false;
+    }
+    if (audio.paused) {
       playTrack();
     }
-    if (mobileAudioUnlock) mobileAudioUnlock.classList.add('hidden');
   };
 
-  ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll'].forEach(evt => {
-    window.addEventListener(evt, handleUserUnlockAudio, { passive: true });
-    document.addEventListener(evt, handleUserUnlockAudio, { passive: true });
-  });
-
-  mobileAudioUnlock?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    playTrack();
-    mobileAudioUnlock.classList.add('hidden');
+  ['mousemove', 'pointermove', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'wheel', 'scroll', 'keydown', 'focus'].forEach(evt => {
+    window.addEventListener(evt, passiveUnmute, { passive: true });
+    document.addEventListener(evt, passiveUnmute, { passive: true });
   });
 
   playPauseBtn.addEventListener('click', () => {
