@@ -215,12 +215,11 @@ function initFloatingPolaroids() {
    5. MUSIC PLAYLIST & BEAT-REACTIVE AUDIO ENGINE
    ========================================================== */
 const playlist = [
+  { title: "Happy Birthday Song 🎂", src: "music/Happy Birthday Song.mp3" },
   { title: "Classical Violin & Strings", src: "music/viacheslavstarostin-classical-violin-strings-music-408073.mp3" },
   { title: "Romantic Acoustic Melody", src: "music/andriig-sad-sad-acoustic-music-566795.mp3" },
   { title: "Peaceful Lo-Fi Beats", src: "music/prettyjohn1-sad-lofi-533422.mp3" },
-  { title: "Soulful Strings Melody", src: "music/soulfuljamtracks-strings-violin-background-478146.mp3" },
-  { title: "Isabel LaRosa - favorite", src: "music/Isabel LaRosa - favorite (Lyrics).mp3" },
-  { title: "Soft Emotional Strings", src: "music/solarflex-sad-sad-music-571733.mp3" }
+  { title: "Isabel LaRosa - favorite", src: "music/Isabel LaRosa - favorite (Lyrics).mp3" }
 ];
 
 let currentTrackIndex = 0;
@@ -246,7 +245,6 @@ function startBeatDetectionLoop() {
 
   function analyze() {
     analyser.getByteFrequencyData(dataArray);
-    // Lower frequency bass average
     const bass = (dataArray[0] + dataArray[1] + dataArray[2] + dataArray[3]) / 4;
 
     if (bass > 175) {
@@ -259,30 +257,26 @@ function startBeatDetectionLoop() {
 }
 
 function startSynthesizedBeatLoop() {
-  // Graceful violin cadence rhythm (~500ms harmonic pulse)
   const cinemaStage = document.getElementById('cinemaStage');
   setInterval(() => {
     if (!isPlaying) return;
     cinemaStage?.classList.add('beat-pulse-active');
     setTimeout(() => cinemaStage?.classList.remove('beat-pulse-active'), 110);
-  }, 500);
+  }, 450);
 }
 
 /* ==========================================================
-   SONG LYRICS / POETIC QUOTES SYNCHRONIZER DATA (Classical Violin)
+   SONG LYRICS / POETIC QUOTES SYNCHRONIZER DATA (Happy Birthday Song)
    ========================================================== */
 const songLyrics = [
-  { time: 0, en: "♪ (Classical Violin Strings - A Melody for Raisa) ♪", bn: "♪ স্নিগ্ধ ভায়োলিনের মায়াবী সুরে রইসার জন্মদিনের আয়োজন ♪" },
-  { time: 5.5, en: "In every gentle string, a heartfelt prayer resonates...", bn: "ভায়োলিনের প্রতিটি মিষ্টি সুরে মিশে আছে তোমার জন্য আন্তরিক দোয়া..." },
-  { time: 10.5, en: "A harmony of grace, brilliance, and timeless elegance...", bn: "তোমার মেধা, প্রজ্ঞা আর স্নিগ্ধ ব্যক্তিত্ব যেন এক অপূর্ব সুরের মূর্ছনা..." },
-  { time: 15.5, en: "Happy Birthday to the most dedicated student, Raisa...", bn: "জ্ঞান ও বইপ্রেমী অনন্য শিক্ষার্থী রইসাকে জন্মদিনের রক্তিম শুভেচ্ছা..." },
-  { time: 21.0, en: "Like a symphony of stars glowing across the night sky...", bn: "রাতের আকাশে যেমন তারারা আলো ছড়ায়, তেমনই দ্যুতি ছড়াক তোমার জীবন..." },
-  { time: 26.5, en: "May every path you walk be filled with joy and success...", bn: "তোমার আগামীর প্রতিটি দিন ভরে উঠুক অফুরন্ত আনন্দ আর মহাসাফল্যে..." },
-  { time: 32.0, en: "Every book you open blossoms into wisdom and light...", bn: "বইয়ের পাতায় তোমার একাগ্র সাধনা তোমাকে নিয়ে যাবে অনন্য উচ্চতায়..." },
-  { time: 37.5, en: "Tonight at 12:00 AM, a secret awaits to be revealed...", bn: "আজ রাত ঠিক ১২:০০ টায় এক গোপন রহস্যের জট খুলবে... 🤫" },
-  { time: 43.0, en: "May all your dreams and unspoken wishes come true...", bn: "তোমার মনের সকল ইচ্ছা আর না-বলা স্বপ্নগুলো সুন্দরভাবে পূরণ হোক..." },
-  { time: 49.0, en: "Always keep that beautiful, innocent smile on your face...", bn: "তোমার মুখের এই স্নিগ্ধ ও পবিত্র মিষ্টি হাসি সারাজীবন অটুট থাকুক..." },
-  { time: 55.0, en: "Happy Birthday Raisa! Keep shining brighter forever...", bn: "শুভ জন্মদিন রইসা! আলো ছড়াও এবং চিরকাল সুখে শান্তিতে থাকো... ✨💖" }
+  { time: 0, en: "♪ Happy Birthday to You, Raisa! 🎂 ✨ ♪", bn: "♪ রইসার জন্মদিনের শুভ ও আনন্দময় আয়োজন ♪" },
+  { time: 4.5, en: "Happy Birthday to You, shine bright...", bn: "শুভ জন্মদিন রইসা! চারিদিকে আলো ছড়াও..." },
+  { time: 9.0, en: "Happy Birthday Dear Raisa...", bn: "প্রিয় রইসা, তোমার প্রতিটি দিন ভরে উঠুক সফলতায়..." },
+  { time: 13.5, en: "Happy Birthday to You! May all dreams come true...", bn: "তোমার জীবনের সকল ইচ্ছা আর মনের প্রার্থনা পূর্ণ হোক..." },
+  { time: 18.0, en: "Dedicated scholar, glowing with grace and wisdom...", bn: "মেধাবী বইপ্রেমী ও অনন্য শিক্ষার্থী রইসার ভবিষ্যৎ হোক উজ্জ্বল..." },
+  { time: 23.0, en: "Keep smiling forever, spread joy everywhere...", bn: "তোমার মুখের মিষ্টি হাসি সারাজীবন আলো ছড়াক..." },
+  { time: 28.0, en: "Tonight at 12:00 AM, a secret will be revealed...", bn: "আজ রাত ঠিক ১২:০০ টায় এক গোপন রহস্যের সমাধান হবে... 🤫" },
+  { time: 33.0, en: "Happy Birthday Raisa! Celebrate with love and happiness...", bn: "শুভ জন্মদিন রইসা! অনেক ভালোবাসা ও দোয়া রইলো... 💖🎉" }
 ];
 
 function initMusicPlayer() {
@@ -646,9 +640,10 @@ function initStarfieldCanvas() {
 }
 
 /* ==========================================================
-   6. MAGIC CURSOR TRAIL
+   6. CURSOR TRAIL (DESKTOP ONLY)
    ========================================================== */
 function initCursorTrail() {
+  if (window.innerWidth <= 768 || 'ontouchstart' in window) return;
   const canvas = document.getElementById('cursorTrailCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -672,22 +667,6 @@ function initCursorTrail() {
         vx: (Math.random() - 0.5) * 3,
         vy: (Math.random() - 0.5) * 3,
         size: Math.random() * 14 + 10,
-        emoji: emojis[Math.floor(Math.random() * emojis.length)],
-        alpha: 1,
-        rotation: Math.random() * 360
-      });
-    }
-  });
-
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-      const t = e.touches[0];
-      trailParticles.push({
-        x: t.clientX,
-        y: t.clientY,
-        vx: (Math.random() - 0.5) * 3,
-        vy: (Math.random() - 0.5) * 3,
-        size: Math.random() * 16 + 12,
         emoji: emojis[Math.floor(Math.random() * emojis.length)],
         alpha: 1,
         rotation: Math.random() * 360
@@ -725,12 +704,13 @@ function initCursorTrail() {
    7. FLOATING 3D OBJECTS (BOOKS, HEARTS, GIFTS, STARS)
    ========================================================== */
 function initFloating3DObjects() {
+  if (window.innerWidth <= 768) return; // Prevent lag on mobile devices
   const container = document.getElementById('floating3DObjects');
   if (!container) return;
   const items = ['📚', '💖', '🎁', '⭐', '🌸', '📖', '💫'];
 
   function spawn3DObject() {
-    if (document.querySelectorAll('.float-3d-item').length > 18) return;
+    if (document.querySelectorAll('.float-3d-item').length > 10) return;
     const el = document.createElement('div');
     el.className = 'float-3d-item';
     el.textContent = items[Math.floor(Math.random() * items.length)];
@@ -742,16 +722,17 @@ function initFloating3DObjects() {
     setTimeout(() => el.remove(), 16000);
   }
 
-  for (let i = 0; i < 8; i++) {
-    setTimeout(spawn3DObject, i * 600);
+  for (let i = 0; i < 4; i++) {
+    setTimeout(spawn3DObject, i * 800);
   }
-  setInterval(spawn3DObject, 1800);
+  setInterval(spawn3DObject, 3000);
 }
 
 /* ==========================================================
-   8. AURORA MESH CANVAS
+   8. AURORA MESH CANVAS (DESKTOP ONLY)
    ========================================================== */
 function initAuroraCanvas() {
+  if (window.innerWidth <= 768) return; // Prevent lag on mobile devices
   const canvas = document.getElementById('auroraCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
