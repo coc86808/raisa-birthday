@@ -1945,6 +1945,73 @@ body {
 .mystery-title { font-weight: 700; color: #a71842; font-size: 1.15rem; margin-bottom: 8px; }
 .mystery-text { font-size: 1.02rem; line-height: 1.75; color: #402030; }
 
+/* Who Am I Clues Grid & Chips */
+.whoami-clues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.clue-chip {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(216, 43, 96, 0.35);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #3b1828;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.clue-chip:hover {
+  transform: translateY(-2px);
+  border-color: #ff0055;
+  background: #ffffff;
+}
+
+.clue-num {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #a71842, #ff0055);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Facebook Clue Messenger Button */
+.btn-fb-clue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #1877f2, #0056b3);
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: var(--font-bengali);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4);
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+.btn-fb-clue:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.6);
+  background: linear-gradient(135deg, #2086ff, #0066d6);
+}
+
 .midnight-reveal-badge {
   background: #ffe3ec;
   border-radius: 14px;
