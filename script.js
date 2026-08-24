@@ -7,18 +7,25 @@
    - Bengali Birthday Letter with Mystery Midnight Reveal
    ========================================================== */
 
+const isMobileDevice = () => window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 document.addEventListener('DOMContentLoaded', () => {
-  init3DPhotoRing();
-  initBackgroundPhotoStreams();
-  initFloatingPolaroids();
-  initPhotoBubblesAndCrystals();
-  initAuroraCanvas();
-  initStarfieldCanvas();
-  initFireworksCanvas();
-  initCursorTrail();
+  const isMobile = isMobileDevice();
+
+  if (!isMobile) {
+    init3DPhotoRing();
+    initBackgroundPhotoStreams();
+    initFloatingPolaroids();
+    initPhotoBubblesAndCrystals();
+    initAuroraCanvas();
+    initStarfieldCanvas();
+    initFireworksCanvas();
+    initCursorTrail();
+    initFloating3DObjects();
+    initBalloons();
+  }
+
   initParticlesAndConfetti();
-  initFloating3DObjects();
-  initBalloons();
   initMusicPlayer();
   initCountdown();
   initMidnightCountdown();
@@ -801,6 +808,8 @@ function initParticlesAndConfetti() {
     });
   }
 
+  let isConfettiLoopRunning = false;
+
   function createConfettiBurst(x, y, count = 120) {
     const colors = ['#ff0055', '#ffd700', '#00f2fe', '#9b51e0', '#ff8da1', '#ffffff', '#00ff88'];
     for (let i = 0; i < count; i++) {
@@ -819,6 +828,10 @@ function initParticlesAndConfetti() {
         shape: Math.random() > 0.35 ? 'rect' : 'circle',
         decay: Math.random() * 0.01 + 0.006
       });
+    }
+    if (!isConfettiLoopRunning) {
+      isConfettiLoopRunning = true;
+      requestAnimationFrame(animate);
     }
   }
 
@@ -867,31 +880,13 @@ function initParticlesAndConfetti() {
       confCtx.restore();
     }
 
-    spkCtx.clearRect(0, 0, spkCanvas.width, spkCanvas.height);
-    sparkleParticles.forEach((spk) => {
-      spk.alpha += spk.speed * spk.direction;
-      if (spk.alpha > 1) { spk.alpha = 1; spk.direction = -1; }
-      else if (spk.alpha < 0.1) {
-        spk.alpha = 0.1;
-        spk.direction = 1;
-        spk.x = Math.random() * spkCanvas.width;
-        spk.y = Math.random() * spkCanvas.height;
-      }
-
-      spkCtx.save();
-      spkCtx.globalAlpha = spk.alpha;
-      spkCtx.fillStyle = '#ffd700';
-      spkCtx.shadowColor = '#fff';
-      spkCtx.shadowBlur = 12;
-      spkCtx.beginPath();
-      spkCtx.arc(spk.x, spk.y, spk.radius, 0, Math.PI * 2);
-      spkCtx.fill();
-      spkCtx.restore();
-    });
-
-    requestAnimationFrame(animate);
+    if (confettiParticles.length > 0) {
+      requestAnimationFrame(animate);
+    } else {
+      isConfettiLoopRunning = false;
+      confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+    }
   }
-  animate();
 }
 
 /* ==========================================================

@@ -2772,9 +2772,44 @@ body {
 .lightbox-next { right: 25px; }
 
 /* ==========================================================
-   COMPREHENSIVE MOBILE & TABLET OPTIMIZATIONS (ZERO LAG)
+   COMPREHENSIVE MOBILE & TABLET OPTIMIZATIONS (ZERO LAG 60 FPS)
    ========================================================== */
 @media (max-width: 768px) {
+  /* Completely disable all heavy canvas overlays on mobile */
+  #auroraCanvas,
+  #fireworksCanvas,
+  #starfieldCanvas,
+  #sparkleCanvas,
+  #cursorTrailCanvas,
+  #motionGraphicsCanvas {
+    display: none !important;
+  }
+
+  /* Disable expensive backdrop-filter and blur across all elements on mobile */
+  *,
+  *::before,
+  *::after {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Hardware-accelerate slides and photos on mobile */
+  .cinema-slide,
+  .cinema-photo-frame,
+  .cinema-photo-frame img,
+  .slideshow-img-box img,
+  .letter-paper {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Flatten heavy 3D matrix animations to smooth 2D transitions on mobile */
+  .cinema-slide {
+    filter: none !important;
+    transform-style: flat !important;
+  }
+
   /* Disable heavy background loops that cause mobile GPU lag */
   .bg-photo-streams,
   .cinema-bg-photo-streams,
@@ -2782,11 +2817,14 @@ body {
   .cinema-bg-photo-ring-stage,
   .bg-photo-bubbles,
   .bg-photo-crystals,
-  .speed-lines-overlay {
+  .speed-lines-overlay,
+  .ambient-light-rays,
+  .floating-3d-container,
+  #balloonContainer {
     display: none !important;
   }
 
-  /* Disable heavy blur rendering on mobile GPUs */
+  /* Solid fast GPU backgrounds */
   .glass-card,
   .glass-badge,
   .cinema-caption-box,
@@ -2794,9 +2832,7 @@ body {
   .wish-card,
   .slideshow-card,
   .music-player-bar {
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-    background: rgba(22, 6, 32, 0.95) !important;
+    background: rgba(22, 6, 32, 0.96) !important;
   }
 
   .hero-title { font-size: 2.4rem; }
