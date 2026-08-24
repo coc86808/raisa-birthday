@@ -362,11 +362,35 @@ function initMusicPlayer() {
   loadTrack(0);
   playTrack();
 
+  const siteEntranceOverlay = document.getElementById('siteEntranceOverlay');
+  const entranceStartBtn = document.getElementById('entranceStartBtn');
+
+  function enterSiteAndPlay() {
+    if (siteEntranceOverlay) {
+      siteEntranceOverlay.classList.add('hidden');
+    }
+    playTrack();
+    window.triggerConfetti?.(window.innerWidth / 2, window.innerHeight * 0.4, 90);
+    playCelebrationSound?.();
+  }
+
+  entranceStartBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    enterSiteAndPlay();
+  });
+
+  siteEntranceOverlay?.addEventListener('click', () => {
+    enterSiteAndPlay();
+  });
+
   const handleUserUnlockAudio = () => {
     if (!isPlaying || audio.paused) {
       playTrack();
     }
     if (mobileAudioUnlock) mobileAudioUnlock.classList.add('hidden');
+    if (siteEntranceOverlay && !siteEntranceOverlay.classList.contains('hidden')) {
+      siteEntranceOverlay.classList.add('hidden');
+    }
   };
 
   ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll'].forEach(evt => {
@@ -376,7 +400,7 @@ function initMusicPlayer() {
 
   mobileAudioUnlock?.addEventListener('click', (e) => {
     e.stopPropagation();
-    playTrack();
+    enterSiteAndPlay();
     mobileAudioUnlock.classList.add('hidden');
   });
 
