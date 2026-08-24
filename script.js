@@ -215,7 +215,7 @@ function initFloatingPolaroids() {
    5. MUSIC PLAYLIST & BEAT-REACTIVE AUDIO ENGINE
    ========================================================== */
 const playlist = [
-  { title: "Special Melody for Raisa 💖", src: "music/sakin for raisa.m4a" },
+  { title: "Special Melody for Raisa 💖", src: "music/final raisa.mp3" },
   { title: "Happy Birthday Song 🎂", src: "music/Happy Birthday Song.mp3" },
   { title: "Classical Violin & Strings", src: "music/viacheslavstarostin-classical-violin-strings-music-408073.mp3" },
   { title: "Romantic Acoustic Melody", src: "music/andriig-sad-sad-acoustic-music-566795.mp3" },
@@ -362,35 +362,11 @@ function initMusicPlayer() {
   loadTrack(0);
   playTrack();
 
-  const siteEntranceOverlay = document.getElementById('siteEntranceOverlay');
-  const entranceStartBtn = document.getElementById('entranceStartBtn');
-
-  function enterSiteAndPlay() {
-    if (siteEntranceOverlay) {
-      siteEntranceOverlay.classList.add('hidden');
-    }
-    playTrack();
-    window.triggerConfetti?.(window.innerWidth / 2, window.innerHeight * 0.4, 90);
-    playCelebrationSound?.();
-  }
-
-  entranceStartBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    enterSiteAndPlay();
-  });
-
-  siteEntranceOverlay?.addEventListener('click', () => {
-    enterSiteAndPlay();
-  });
-
   const handleUserUnlockAudio = () => {
     if (!isPlaying || audio.paused) {
       playTrack();
     }
     if (mobileAudioUnlock) mobileAudioUnlock.classList.add('hidden');
-    if (siteEntranceOverlay && !siteEntranceOverlay.classList.contains('hidden')) {
-      siteEntranceOverlay.classList.add('hidden');
-    }
   };
 
   ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll'].forEach(evt => {
@@ -400,7 +376,7 @@ function initMusicPlayer() {
 
   mobileAudioUnlock?.addEventListener('click', (e) => {
     e.stopPropagation();
-    enterSiteAndPlay();
+    playTrack();
     mobileAudioUnlock.classList.add('hidden');
   });
 
