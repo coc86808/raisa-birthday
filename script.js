@@ -215,11 +215,11 @@ function initFloatingPolaroids() {
    5. MUSIC PLAYLIST & BEAT-REACTIVE AUDIO ENGINE
    ========================================================== */
 const playlist = [
-  { title: "Isabel LaRosa - favorite", src: "music/Isabel LaRosa - favorite (Lyrics).mp3" },
-  { title: "Violin & Classical Strings", src: "music/viacheslavstarostin-classical-violin-strings-music-408073.mp3" },
+  { title: "Classical Violin & Strings", src: "music/viacheslavstarostin-classical-violin-strings-music-408073.mp3" },
   { title: "Romantic Acoustic Melody", src: "music/andriig-sad-sad-acoustic-music-566795.mp3" },
   { title: "Peaceful Lo-Fi Beats", src: "music/prettyjohn1-sad-lofi-533422.mp3" },
   { title: "Soulful Strings Melody", src: "music/soulfuljamtracks-strings-violin-background-478146.mp3" },
+  { title: "Isabel LaRosa - favorite", src: "music/Isabel LaRosa - favorite (Lyrics).mp3" },
   { title: "Soft Emotional Strings", src: "music/solarflex-sad-sad-music-571733.mp3" }
 ];
 
@@ -259,7 +259,7 @@ function startBeatDetectionLoop() {
 }
 
 function startSynthesizedBeatLoop() {
-  // 120 BPM rhythm fallback (~500ms per beat)
+  // Graceful violin cadence rhythm (~500ms harmonic pulse)
   const cinemaStage = document.getElementById('cinemaStage');
   setInterval(() => {
     if (!isPlaying) return;
@@ -269,23 +269,20 @@ function startSynthesizedBeatLoop() {
 }
 
 /* ==========================================================
-   SONG LYRICS SYNCHRONIZER DATA (Isabel LaRosa - favorite)
+   SONG LYRICS / POETIC QUOTES SYNCHRONIZER DATA (Classical Violin)
    ========================================================== */
 const songLyrics = [
-  { time: 0, en: "♪ (Music Intro - Isabel LaRosa: favorite) ♪", bn: "♪ সুরের মূর্ছনায় রইসার জন্মদিনের আয়োজন ♪" },
-  { time: 5.5, en: "I can see it in your eyes...", bn: "তোমার চোখের তারায় ফুটে উঠছে মায়াবী আলো..." },
-  { time: 9.0, en: "You're telling all these pretty lies...", bn: "মুগ্ধতার পরশে ছড়িয়ে পড়ছে মিষ্টি হাসি..." },
-  { time: 13.0, en: "And you say that I'm your favorite...", bn: "তুমি বললে তুমিই আমার সবচেয়ে প্রিয়..." },
-  { time: 17.0, en: "Dancing in the starry moonlight glow...", bn: "চাঁদের স্নিগ্ধ আলোয় স্বপ্নরা যেন নাচছে..." },
-  { time: 21.0, en: "Everywhere that you might go...", bn: "যেখানেই তুমি যাও, আলো ছড়িয়ে পড়ে..." },
-  { time: 25.0, en: "You're my favorite shining star...", bn: "তুমি আমার সবচেয়ে প্রিয় উজ্জ্বল নক্ষত্র..." },
-  { time: 29.5, en: "Happy Birthday Raisa, shine bright...", bn: "শুভ জন্মদিন রইসা! আলো ছড়াও সবসময়..." },
-  { time: 34.0, en: "Books and dreams and magical nights...", bn: "বইয়ের পাতা আর স্বপ্নের মায়ায় সাজুক জীবন..." },
-  { time: 38.5, en: "You make every moment feel so sweet...", bn: "তোমার উপস্থিতি প্রতিটি মুহূর্তকে মধুর করে তোলে..." },
-  { time: 43.0, en: "Tonight at 12:00 AM, a secret awaits...", bn: "আজ রাত ঠিক ১২:০০ টায় এক গোপন রহস্য প্রকাশ পাবে..." },
-  { time: 47.5, en: "May all your wishes and prayers come true...", bn: "তোমার মনের সকল ইচ্ছা আর প্রার্থনা পূর্ণ হোক..." },
-  { time: 52.0, en: "Always keep that beautiful smile on your face...", bn: "তোমার মুখে এই নিষ্পাপ মিষ্টি হাসি চিরকাল থাকুক..." },
-  { time: 57.0, en: "Happy Birthday to the most dedicated student...", bn: "মেধাবী ও অনন্য বইপ্রেমী রইসাকে জন্মদিনের শুভেচ্ছা..." }
+  { time: 0, en: "♪ (Classical Violin Strings - A Melody for Raisa) ♪", bn: "♪ স্নিগ্ধ ভায়োলিনের মায়াবী সুরে রইসার জন্মদিনের আয়োজন ♪" },
+  { time: 5.5, en: "In every gentle string, a heartfelt prayer resonates...", bn: "ভায়োলিনের প্রতিটি মিষ্টি সুরে মিশে আছে তোমার জন্য আন্তরিক দোয়া..." },
+  { time: 10.5, en: "A harmony of grace, brilliance, and timeless elegance...", bn: "তোমার মেধা, প্রজ্ঞা আর স্নিগ্ধ ব্যক্তিত্ব যেন এক অপূর্ব সুরের মূর্ছনা..." },
+  { time: 15.5, en: "Happy Birthday to the most dedicated student, Raisa...", bn: "জ্ঞান ও বইপ্রেমী অনন্য শিক্ষার্থী রইসাকে জন্মদিনের রক্তিম শুভেচ্ছা..." },
+  { time: 21.0, en: "Like a symphony of stars glowing across the night sky...", bn: "রাতের আকাশে যেমন তারারা আলো ছড়ায়, তেমনই দ্যুতি ছড়াক তোমার জীবন..." },
+  { time: 26.5, en: "May every path you walk be filled with joy and success...", bn: "তোমার আগামীর প্রতিটি দিন ভরে উঠুক অফুরন্ত আনন্দ আর মহাসাফল্যে..." },
+  { time: 32.0, en: "Every book you open blossoms into wisdom and light...", bn: "বইয়ের পাতায় তোমার একাগ্র সাধনা তোমাকে নিয়ে যাবে অনন্য উচ্চতায়..." },
+  { time: 37.5, en: "Tonight at 12:00 AM, a secret awaits to be revealed...", bn: "আজ রাত ঠিক ১২:০০ টায় এক গোপন রহস্যের জট খুলবে... 🤫" },
+  { time: 43.0, en: "May all your dreams and unspoken wishes come true...", bn: "তোমার মনের সকল ইচ্ছা আর না-বলা স্বপ্নগুলো সুন্দরভাবে পূরণ হোক..." },
+  { time: 49.0, en: "Always keep that beautiful, innocent smile on your face...", bn: "তোমার মুখের এই স্নিগ্ধ ও পবিত্র মিষ্টি হাসি সারাজীবন অটুট থাকুক..." },
+  { time: 55.0, en: "Happy Birthday Raisa! Keep shining brighter forever...", bn: "শুভ জন্মদিন রইসা! আলো ছড়াও এবং চিরকাল সুখে শান্তিতে থাকো... ✨💖" }
 ];
 
 function initMusicPlayer() {
