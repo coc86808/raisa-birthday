@@ -1179,6 +1179,10 @@ function initCinemaExperience() {
   }
 
   function triggerTransitionVFX(index = 0) {
+    if (isMobileDevice()) {
+      // On mobile, zero-lag clean transitions without canvas thrashing
+      return;
+    }
     const mgType = index % 4;
 
     // Trigger Motion Graphics Canvas Vector
@@ -1216,7 +1220,7 @@ function initCinemaExperience() {
   }
 
   function spawnCinemaParticles() {
-    if (!cinemaParticles || !isCinemaPlaying) return;
+    if (isMobileDevice() || !cinemaParticles || !isCinemaPlaying) return;
     const symbols = ['💖', '✨', '🌸', '⭐', '💕', '💫', '📚', '🎁'];
     const p = document.createElement('div');
     p.className = 'cinema-particle-item';
